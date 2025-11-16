@@ -6,22 +6,8 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const { listingSchema } = require("../schema.js");
-const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing");
-const { isLoggedIn } = require("../middleware.js");
-
-// Middleware function to validate listing data using Joi schema
-const validateListing = (req, res, next) => {
-  let { error } = listingSchema.validate(req.body); // validate the request body against the listing schema
-  if (error) {
-    let errmsg = error.details.map((el) => el.message).join(","); // create an error message from the validation errors
-    throw new ExpressError(errmsg, 400); // if validation fails, throw an error
-  } else {
-    next(); // if validation passes, proceed to the next middleware/route handler
-  }
-};
-
+const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 
 //to get all the listings from the database and render them using EJS
 //Index route
@@ -76,6 +62,7 @@ router.post(
 router.get(
   "/:id/edit",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     const { id } = req.params; //destructuring id from req.params
     const listing = await Listing.findById(id);
@@ -92,6 +79,7 @@ router.get(
 router.put(
   "/:id",
   isLoggedIn,
+  isOwner,
   validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
@@ -107,6 +95,8 @@ router.put(
 //Delete Route
 router.delete(
   "/:id",
+  isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id); //deleting the listing by id

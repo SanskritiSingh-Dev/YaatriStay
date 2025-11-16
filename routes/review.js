@@ -1,21 +1,9 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync.js");
-const { reviewSchema } = require("../schema.js");
-const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing");
 const Review = require("../models/review.js");
-
-//validate review middleware
-const validateReview = (req, res, next) => {
-  let { error } = reviewSchema.validate(req.body); // validate the request body against the review schema
-  if (error) {
-    let errmsg = error.details.map((el) => el.message).join(","); // create an error message from the validation errors   
-    throw new ExpressError(errmsg, 400); // if validation fails, throw an error
-  } else {
-    next(); // if validation passes, proceed to the next middleware/route handler
-  }
-};
+const { validateReview } = require("../middleware.js");
 
 //Review routes would go here
 //Post route to create a new review for a listing

@@ -36,7 +36,6 @@
   </div>
 
   <!-- Buttons Section -->
-  <% if(currentUser && currentUser._id.equals(listing.owner._id)) { %>
   <div class="d-flex justify-content-center align-items-center gap-3 mt-4 mb-5">
     <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark add-btn px-4">Edit</a>
 
@@ -44,7 +43,6 @@
       <button class="btn btn-dark px-4" type="submit">Delete</button>
     </form>
   </div>
-  <% } %>
 
   <!-- Review Section -->
   <div class="col-8 offset-3 mb-3">
