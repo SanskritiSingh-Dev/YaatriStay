@@ -46,11 +46,12 @@ router.get(
   isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params; // destructuring id from req.params
-    const listing = await Listing.findById(id).populate("reviews"); // fetching the listing by id and populating the reviews
+    const listing = await Listing.findById(id).populate("reviews").populate("owner"); // fetching the listing by id and populating the reviews and also the owner details
     if(!listing){
       req.flash("error", "Cannot find that listing!");  // flash message if listing not found
       return res.redirect("/listings"); // redirecting to listings page if listing not found
     }
+    console.log(listing);
     res.render("listings/show.ejs", { listing });
   })
 );
@@ -63,6 +64,7 @@ router.post(
   validateListing,
   wrapAsync(async (req, res, next) => {
     const newListing = new Listing(req.body.listing); // creating a new listing using the data from the request body
+    newListing.owner = req.user._id; // setting the owner of the listing to the currently logged-in user
     await newListing.save();
     req.flash("success", "Successfully made a new listing!"); // flash message for successful creation
     res.redirect("/listings");
