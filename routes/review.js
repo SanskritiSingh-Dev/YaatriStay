@@ -3,17 +3,20 @@ const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../models/listing");
 const Review = require("../models/review.js");
-const { validateReview } = require("../middleware.js");
+const { validateReview, isLoggedIn } = require("../middleware.js");
 
 //Review routes would go here
 //Post route to create a new review for a listing
 router.post(
   "/",
+  isLoggedIn,
   validateReview,
   wrapAsync(async (req, res) => { 
     let listing = await Listing.findById(req.params.id); //finding the listing by id
     let newReview = new Review(req.body.review); //creating a new review using the data from the request body
+    newReview.author = req.user._id; //setting the author of the review to the current logged-in user
     listing.reviews.push(newReview); //adding the new review to the listing's reviews array
+    
     await newReview.save(); //saving the new review to the database
     await listing.save(); //saving the updated listing to the database
     req.flash("success", "Successfully added a new review!"); // flash message for successful review creation
