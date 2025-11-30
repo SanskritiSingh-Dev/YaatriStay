@@ -29,7 +29,6 @@ router.get("/new", isLoggedIn, (req, res) => {
 //Show route
 router.get(
   "/:id",
-  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params; // destructuring id from req.params
     const listing = await Listing.findById(id).populate("reviews").populate("owner"); // fetching the listing by id and populating the reviews and also the owner details
