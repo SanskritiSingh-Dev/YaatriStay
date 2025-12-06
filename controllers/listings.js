@@ -13,15 +13,16 @@ module.exports.renderNewForm = (req, res) => {
 
 // to get a single listing by id and render it using EJS
 module.exports.showListing = async (req, res) => {
-  const { id } = req.params; // destructuring id from req.params
+  const { id } = req.params;
   const listing = await Listing.findById(id)
-    .populate({ path: "reviews", populate: { path: "author " } }) // populating the reviews and their owners
-    .populate("owner"); // fetching the listing by id and populating the reviews and also the owner details
+    .populate({ path: "reviews", populate: { path: "author" } }) 
+    .populate("owner");
+
   if (!listing) {
-    req.flash("error", "Cannot find that listing!"); // flash message if listing not found
-    return res.redirect("/listings"); // redirecting to listings page if listing not found
+    req.flash("error", "Cannot find that listing!");
+    return res.redirect("/listings");
   }
-  console.log(listing);
+
   res.render("listings/show.ejs", { listing });
 };
 
