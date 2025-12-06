@@ -31,9 +31,11 @@ router.get(
   "/:id",
   wrapAsync(async (req, res) => {
     const { id } = req.params; // destructuring id from req.params
-    const listing = await Listing.findById(id).populate("reviews").populate("owner"); // fetching the listing by id and populating the reviews and also the owner details
-    if(!listing){
-      req.flash("error", "Cannot find that listing!");  // flash message if listing not found
+    const listing = await Listing.findById(id)
+      .populate({ path: "reviews", populate: { path: "author" } }) // populating the reviews and their owners
+      .populate("owner"); // fetching the listing by id and populating the reviews and also the owner details
+    if (!listing) {
+      req.flash("error", "Cannot find that listing!"); // flash message if listing not found
       return res.redirect("/listings"); // redirecting to listings page if listing not found
     }
     console.log(listing);
@@ -65,8 +67,8 @@ router.get(
   wrapAsync(async (req, res) => {
     const { id } = req.params; //destructuring id from req.params
     const listing = await Listing.findById(id);
-    if(!listing){
-      req.flash("error", "Cannot find that listing!");  // flash message if listing not found
+    if (!listing) {
+      req.flash("error", "Cannot find that listing!"); // flash message if listing not found
       return res.redirect("/listings"); // redirecting to listings page if listing not found
     }
     res.render("listings/edit.ejs", { listing });
