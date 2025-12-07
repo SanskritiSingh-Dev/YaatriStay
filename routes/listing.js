@@ -9,7 +9,8 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../models/listing");
 const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const { storage } = require("../cloudConfig.js");//importing cloudinary storage configuration
+const upload = multer({ storage });//setting up multer with cloudinary storage
 
 //importing the listings controller
 const listingController = require("../controllers/listings.js");

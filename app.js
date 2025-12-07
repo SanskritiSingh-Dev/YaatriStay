@@ -1,4 +1,8 @@
-// Importing required modules
+// Load environment variables from .env file if not in production
+if(process.env.NODE_ENV !== "production"){
+  require("dotenv").config(); // Load environment variables from .env file in non-production environments
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose"); 
