@@ -1,0 +1,237 @@
+const sampleListings = [
+  {
+    title: "Serene Houseboat Haven",
+    description: "Float gently on the backwaters of Alleppey, where coconut palms mirror themselves in the still waters and tranquility reigns supreme.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U2VyZW5lJTIwSG91c2Vib2F0JTIwSGF2ZW4lMjBrYXNobWlyfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" },
+    price: 3200,
+    location: "Alleppey, Kerala",
+    country: "India"
+  },
+  {
+    title: "Himalayan Hideout",
+    description: "Nestled amidst deodar forests, this cottage in Manali offers breathtaking views and the warmth of mountain hospitality.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1673192378584-11d8f0b3780d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=987" },
+    price: 2400,
+    location: "Manali, Himachal Pradesh",
+    country: "India"
+  },
+  {
+    title: "Royal Heritage Haveli",
+    description: "Live like royalty in this restored haveli in Jaipur, adorned with frescoes, arches, and timeless Rajput grandeur.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1673115955483-6c9e461e8a7b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074" },
+    price: 5500,
+    location: "Jaipur, Rajasthan",
+    country: "India"
+  },
+  {
+    title: "Tea Garden Retreat",
+    description: "Wake up to the aroma of fresh tea leaves in a charming bungalow amidst the rolling hills of Darjeeling.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1741875452425-a3241e97f265?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=928" },
+    price: 2700,
+    location: "Darjeeling, West Bengal",
+    country: "India"
+  },
+  {
+    title: "Goan Beachside Bliss",
+    description: "A breezy shack just steps away from golden sands — where sunsets and laughter fill the evenings.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1735410883018-3b378f37af39?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z29hJTIwYmVhY2glMjBzaWRlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 1800,
+    location: "Goa",
+    country: "India"
+  },
+  {
+    title: "Desert Camp Mirage",
+    description: "Under Jaisalmer’s starry skies, experience desert luxury with camel rides, folk music, and golden dunes at your doorstep.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1605581344769-982b18bd9d19?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGphaXNhbG1lciUyMGFpcmJuYnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 3100,
+    location: "Jaisalmer, Rajasthan",
+    country: "India"
+  },
+  {
+    title: "Forest Whisper Homestay",
+    description: "A tranquil retreat deep in Coorg’s coffee estates, where mist dances through the trees every morning.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1699307196458-bb8acf865111?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29vcmclMjBhaXJibmJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 2600,
+    location: "Coorg, Karnataka",
+    country: "India"
+  },
+  {
+    title: "Valley View Cottage",
+    description: "Perched above Dharamshala, this peaceful stay overlooks prayer flags, monasteries, and snow-kissed peaks.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1657894736581-ccc35d62d9e2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGltYWNoYWwlMjBwcmFkZXNofGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 2300,
+    location: "Dharamshala, Himachal Pradesh",
+    country: "India"
+  },
+  {
+    title: "House of the River Song",
+    description: "A riverside homestay in Rishikesh where the Ganga hums softly beside your window.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1738482224201-eb499b160d72?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJpdmVyc2lkZSUyMGhvdXNlJTIwdXR0YXJha2hhbmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 1900,
+    location: "Rishikesh, Uttarakhand",
+    country: "India"
+  },
+  {
+    title: "Mystic Meadows Chalet",
+    description: "In the lap of Kashmir’s meadows, this cozy chalet offers comfort wrapped in alpine charm.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1721717600065-60e91568cb40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z3VsbWFyZyUyMGthc2htaXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 4000,
+    location: "Gulmarg, Jammu & Kashmir",
+    country: "India"
+  },
+  {
+    title: "Lakeside Palace Stay",
+    description: "An elegant heritage stay by Udaipur’s Lake Pichola, where candles flicker on marble courtyards every night.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dWRhaXB1cnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 5200,
+    location: "Udaipur, Rajasthan",
+    country: "India"
+  },
+  {
+    title: "Rustic Bamboo Haven",
+    description: "Eco-friendly bamboo huts surrounded by emerald fields, where nature speaks in whispers.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1759738101611-07ef8510f0cb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWFqdWxpfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 1400,
+    location: "Majuli Island, Assam",
+    country: "India"
+  },
+  {
+    title: "Luxury Cliff Villa",
+    description: "Perched on a cliff at Varkala, this villa gazes endlessly into the Arabian Sea, merging luxury with peace.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1708149564414-0ea643c6c902?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmFya2FsYSUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 4700,
+    location: "Varkala, Kerala",
+    country: "India"
+  },
+  {
+    title: "Desert Dune Dwelling",
+    description: "Rustic comfort meets adventure in this desert dwelling surrounded by shifting sands and moonlit silence.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1582998451055-5ce52763e246?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmlrYW5lcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 2500,
+    location: "Bikaner, Rajasthan",
+    country: "India"
+  },
+  {
+    title: "Countryside Courtyard Home",
+    description: "A traditional mud courtyard house in rural Madhya Pradesh, filled with earthy charm and home-cooked flavors.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1611369810660-9939de078fd7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fG1hZGh5YSUyMHByYWRlc2glMjBjb3VydHlhcmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 1300,
+    location: "Khajuraho, Madhya Pradesh",
+    country: "India"
+  },
+  {
+    title: "Mountain Stream Cottage",
+    description: "Tucked beside a babbling brook, this wooden cottage near Auli promises serenity and snowy views.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1706363448107-0746536b7cf1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bW91bnRhaW4lMjBzdHJlYW0lMjBjb3R0YWdlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 2700,
+    location: "Auli, Uttarakhand",
+    country: "India"
+  },
+  {
+    title: "Colonial Bungalow Charm",
+    description: "A heritage bungalow in Ooty surrounded by manicured gardens and the sweet fragrance of eucalyptus.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1715709120294-32dac26b7712?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" },
+    price: 3500,
+    location: "Ooty, Tamil Nadu",
+    country: "India"
+  },
+  {
+    title: "Riverfront Eco Resort",
+    description: "Sustainable luxury meets simplicity on the banks of the Kabini River — where wildlife roams nearby.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1653911681252-b24491609fd5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=927" },
+    price: 4100,
+    location: "Kabini, Karnataka",
+    country: "India"
+  },
+  {
+    title: "Himalayan Orchard Stay",
+    description: "Apple orchards, bonfires, and stories under the stars — the perfect mountain hideaway.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1570774942023-6088b601dda6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SGltYWxheWFuJTIwT3JjaGFyZCUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 2300,
+    location: "Kasauli, Himachal Pradesh",
+    country: "India"
+  },
+  {
+    title: "Beachfront Cottage",
+    description: "A peaceful coastal home along Gokarna’s beaches, where mornings begin with waves and end with sunsets.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1746289724683-e41a1fdfd491?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fEJlYWNoZnJvbnQlMjBDb3R0YWdlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 2000,
+    location: "Gokarna, Karnataka",
+    country: "India"
+  },
+  {
+    title: "Heritage Fort Retreat",
+    description: "An ancient fort reborn as a boutique stay — walls that whisper tales of valor and time.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1758467745965-00ca240b1224?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8SGVyaXRhZ2UlMjBGb3J0JTIwUmV0cmVhdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 6000,
+    location: "Kumbhalgarh, Rajasthan",
+    country: "India"
+  },
+  {
+    title: "Hilltop Meditation Stay",
+    description: "Peaceful cottages surrounded by Sal forests, ideal for yoga and mindfulness.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1649080879580-a6648b624324?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Q3VsdHVyYWwlMjBDb3VydHlhcmQlMjBIb21lc3RheXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 1900,
+    location: "Ranchi, Jharkhand",
+    country: "India"
+  },
+  {
+    title: "Sunrise Valley Lodge",
+    description: "A panoramic hill lodge overlooking Munnar’s misty tea valleys — perfect for dreamers and wanderers.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1732974539679-5af68d75b92d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8U3VucmlzZSUyMExvZGdlJTIwbXVubmFyfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 3100,
+    location: "Munnar, Kerala",
+    country: "India"
+  },
+  {
+    title: "Luxury Jungle Villa",
+    description: "Hidden deep within Jim Corbett’s wilderness, this luxury villa offers adventure by day and serenity by night.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1622389250643-9255f9506d79?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8THV4dXJ5JTIwSnVuZ2xlJTIwVmlsbGF8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 4800,
+    location: "Jim Corbett, Uttarakhand",
+    country: "India"
+  },
+  {
+    title: "Urban Heritage Apartment",
+    description: "A tastefully designed studio apartment that blends modern design with Kolkata’s colonial essence.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1728202499822-6046028da231?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8VXJiYW4lMjBIZXJpdGFnZSUyMEFwYXJ0bWVudCUyMFdlc3QlMjBCZW5nYWx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 2000,
+    location: "Kolkata, West Bengal",
+    country: "India"
+  },
+  {
+    title: "Desert Wind Camp",
+    description: "Tented stays amidst Thar’s endless sands, lit by lanterns and folk tunes under starlit skies.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1729209085050-0275de5d52e4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fERlc2VydCUyMFdpbmQlMjBDYW1wfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 2500,
+    location: "Barmer, Rajasthan",
+    country: "India"
+  },
+  {
+    title: "Peaceful Lake Homestay",
+    description: "Overlooking Nainital Lake, this peaceful homestay captures the soul of the hills.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1674769078548-ca7565e92d80?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TGFrZSUyMEhvbWVzdGF5fGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900" },
+    price: 2300,
+    location: "Nainital, Uttarakhand",
+    country: "India"
+  },
+  {
+    title: "Tribal Hills Homestay",
+    description: "Stay amidst Arunachal’s rolling hills, where tribal warmth and untouched beauty blend naturally.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1662281208885-15822c6fd794?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VHJpYmFsJTIwSGlsbHMlMjBIb21lc3RheXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900" },
+    price: 2100,
+    location: "Ziro Valley, Arunachal Pradesh",
+    country: "India"
+  },
+  {
+    title: "Luxury Houseboat Heritage",
+    description: "A grand houseboat experience on Dal Lake — where snow peaks reflect on still waters.",
+    image: { filename: "listingimage", url: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" },
+    price: 5000,
+    location: "Srinagar, Jammu & Kashmir",
+    country: "India"
+  }
+];
+
+module.exports = { data: sampleListings };
+
